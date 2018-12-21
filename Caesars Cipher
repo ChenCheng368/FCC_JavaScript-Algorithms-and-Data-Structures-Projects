@@ -1,0 +1,21 @@
+function rot13(str) { // LBH QVQ VG!
+    var result="";
+    var strArr=str.toUpperCase().split("");
+    console.log(strArr);
+
+    for(let i=0;i<strArr.length;i++){
+        if(/\w/.test(strArr[i])){
+            strArr[i]=ROT13(strArr[i]);
+        }
+    }
+    result=strArr.join("");
+  
+  return result;
+}
+
+function ROT13(x){
+return String.fromCharCode(((x.charCodeAt(0)-65)+13)%26+65);
+}
+
+// Change the inputs below to test
+console.log(rot13("SERR PBQR PNZC"));
