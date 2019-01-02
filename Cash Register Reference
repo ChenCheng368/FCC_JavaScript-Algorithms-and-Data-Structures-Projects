@@ -1,0 +1,15 @@
+refer:https://stackoverflow.com/questions/7486085/copy-array-by-value
+
+Based on the types of elements in the array, we can use various techniques to deep copy.
+
+Javascript deep copy techniques by element types
+
+Array of literal-values (type1)
+The [...myArray], myArray.splice(0), myArray.slice(), and myArray.concat() techniques can be used to deep copy arrays with literal values (boolean, number, and string) only; where the Spread operator [...myArray] has the best performance (https://measurethat.net/Benchmarks/Show/4281/0/spread-array-performance-vs-slice-splice-concat).
+
+Array of literal-values (type1) and literal-structures (type2)
+The JSON.parse(JSON.stringify(myArray)) technique can be used to deep copy literal values (boolean, number, string) and literal structures (array, object), but not prototype objects.
+
+All arrays (type1, type2, type3)
+The jQuery $.extend(myArray) technique can be used to deep-copy all array-types. Libraries like Underscore and Lo-dash offer similar deep-copy functions to jQuery $.extend(), yet have lower performance. More surprisingly, $.extend() has higher performance than the JSON.parse(JSON.stringify(myArray)) technique http://jsperf.com/js-deep-copy/15.
+And for those developers that shy away from third-party libraries (like jQuery), you can use the following custom function; which has higher performance than $.extend, and deep-copies all arrays.
